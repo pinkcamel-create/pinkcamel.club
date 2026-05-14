@@ -40,7 +40,6 @@
   .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5.5vw, 5rem); font-weight: 300; line-height: 1.08; margin-bottom: 2.5rem; position: relative; z-index: 2; }
   .hero-title em { font-style: italic; color: var(--gold); }
   .hero-sub { font-size: 0.82rem; line-height: 2.3; color: var(--cream); opacity: 0.4; max-width: 480px; margin: 0 auto 3rem; position: relative; z-index: 2; }
-  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--gold); opacity: 0.55; margin-bottom: 4rem; position: relative; z-index: 2; }
   .hero-links { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
   .hero-link { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.45; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
   .hero-link:hover { opacity: 1; }
@@ -56,9 +55,9 @@
   .ecosystem { background: var(--cream); padding: 0; }
   .eco-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; }
   .eco-item { padding: 5rem 3rem; text-align: center; position: relative; overflow: hidden; transition: background 0.4s; cursor: default; }
-  .eco-item:hover { background: rgba(0,0,0,0.03); }
+  .eco-item:hover { opacity: 0.92; }
   .eco-item::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0; transition: opacity 0.4s; }
-  .eco-item:hover::after { opacity: 0.15; }
+  .eco-item:hover::after { opacity: 0.5; }
   .eco-item-burgundy { background: var(--burgundy); }
   .eco-item-green { background: var(--green); }
   .eco-item-blush { background: var(--blush); }
@@ -165,12 +164,11 @@
     <circle cx="260" cy="260" r="4" fill="rgba(201,169,110,0.3)"/>
   </svg>
   <h1 class="hero-title animate-in">Between what was<br>and what comes<br><em>next.</em></h1>
-  <p class="hero-sub animate-in">We carry lives too full to be managed, too intentional to be compromised. Business expansions. Life relocations. The moments where your life gets reorganised.</p>
-  <p class="hero-tagline animate-in">"We carry lives too full to be managed, too intentional to be compromised."</p>
+  <p class="hero-sub animate-in">Business expansions. Life relocations. The moments where your life gets reorganised.</p>
   <div class="hero-links animate-in">
     <a href="pinkcamelretreats.html" class="hero-link">
       <span class="hero-link-icon"></span>
-      Retreats
+      Private Retreats
     </a>
     <a href="business-concierge.html" class="hero-link">
       <span class="hero-link-icon"></span>
