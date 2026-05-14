@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pink Camel Retreats — Portugal &amp; Morocco 2026</title>
+<title>Pink Camel Retreats — Portugal & Morocco 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --burgundy: #2C1008;
     --burgundy-deep: #1a0905;
@@ -20,7 +19,6 @@
     --blush-deep: #C4845A;
     --brown: #3D1A0A;
   }
-
   html { scroll-behavior: smooth; }
   body { font-family: 'Didact Gothic', sans-serif; background: var(--burgundy); color: var(--cream); overflow-x: hidden; }
 
@@ -36,6 +34,7 @@
   .nav-links a:hover { opacity: 1; }
   .nav-back { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; opacity: 0.6; transition: opacity 0.3s; display: flex; align-items: center; gap: 0.5rem; }
   .nav-back:hover { opacity: 1; }
+  .nav-back::before { content: '←'; }
 
   /* ── HERO ── */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 3rem 7rem; position: relative; overflow: hidden; }
@@ -57,24 +56,51 @@
   .label-center { justify-content: center; }
   .label-center::before { display: none; }
 
-  /* ── PORTFOLIO: RETREAT TYPES ── */
-  .types-section { background: var(--cream); padding: 9rem 3rem; }
-  .types-inner { max-width: 1100px; margin: 0 auto; }
-  .types-intro { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: start; margin-bottom: 6rem; }
-  .types-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--burgundy); }
-  .types-intro h2 em { font-style: italic; }
-  .types-intro p { font-size: 0.82rem; line-height: 2.2; color: var(--brown); opacity: 0.75; margin-top: 1.5rem; }
-  .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .type-card { padding: 3rem 2.5rem; background: white; border-top: 2px solid transparent; transition: border-color 0.3s, transform 0.3s; cursor: default; position: relative; }
-  .type-card:hover { border-top-color: var(--blush-deep); transform: translateY(-4px); }
-  .type-card-num { font-family: 'Cormorant Garamond', serif; font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); opacity: 0.6; margin-bottom: 2rem; display: block; }
-  .type-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--burgundy); margin-bottom: 1rem; line-height: 1.2; }
-  .type-card-title em { font-style: italic; }
-  .type-card-desc { font-size: 0.8rem; line-height: 2; color: var(--brown); opacity: 0.7; margin-bottom: 1.8rem; }
-  .type-card-detail { font-size: 0.72rem; color: var(--blush-deep); letter-spacing: 0.05em; opacity: 0.8; }
-  .type-card-detail::before { content: '—'; margin-right: 0.5rem; opacity: 0.5; }
-  .type-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blush-deep), transparent); opacity: 0; transition: opacity 0.3s; }
-  .type-card:hover::after { opacity: 0.15; }
+  /* ── GEO STRIP ── */
+  .geo-strip { background: var(--burgundy-deep); padding: 1.5rem 3rem; text-align: center; border-top: 1px solid rgba(201,169,110,0.08); }
+  .geo-strip p { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(201,169,110,0.25); }
+  .geo-strip span { margin: 0 1.2rem; opacity: 0.4; }
+
+  /* ── FORMATS SECTION ── */
+  .formats-section { background: var(--cream); padding: 9rem 3rem; }
+  .formats-inner { max-width: 1100px; margin: 0 auto; }
+  .formats-intro { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: start; margin-bottom: 6rem; }
+  .formats-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--burgundy); }
+  .formats-intro h2 em { font-style: italic; }
+  .formats-intro p { font-size: 0.82rem; line-height: 2.2; color: var(--brown); opacity: 0.75; margin-top: 1.5rem; }
+  .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .format-card { padding: 3rem 2.5rem; background: white; border-top: 2px solid transparent; transition: border-color 0.3s, transform 0.3s; cursor: default; position: relative; }
+  .format-card:hover { border-top-color: var(--blush-deep); transform: translateY(-4px); }
+  .format-card-num { font-family: 'Cormorant Garamond', serif; font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); opacity: 0.6; margin-bottom: 2rem; display: block; }
+  .format-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--burgundy); margin-bottom: 1rem; line-height: 1.2; }
+  .format-card-title em { font-style: italic; }
+  .format-card-desc { font-size: 0.8rem; line-height: 2; color: var(--brown); opacity: 0.7; margin-bottom: 1.8rem; }
+  .format-card-detail { font-size: 0.72rem; color: var(--blush-deep); letter-spacing: 0.05em; opacity: 0.8; }
+  .format-card-detail::before { content: '—'; margin-right: 0.5rem; opacity: 0.5; }
+
+  /* ── ALWAYS INCLUDED ── */
+  .included-section { background: var(--burgundy); padding: 9rem 3rem; }
+  .included-inner { max-width: 1100px; margin: 0 auto; }
+  .included-header { text-align: center; margin-bottom: 5rem; }
+  .included-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 1rem; }
+  .included-header h2 em { font-style: italic; color: var(--gold); }
+  .included-header p { font-size: 0.82rem; color: var(--cream); opacity: 0.4; }
+  .included-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; }
+  .included-item { padding: 2.5rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,169,110,0.06); text-align: center; }
+  .included-glyph { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: rgba(201,169,110,0.4); margin-bottom: 1.2rem; display: block; }
+  .included-name { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); opacity: 0.5; margin-bottom: 0.8rem; }
+  .included-desc { font-size: 0.75rem; color: var(--cream); opacity: 0.3; line-height: 1.7; }
+
+  /* ── DEEP HEALING ── */
+  .healing-section { background: var(--blush); padding: 7rem 3rem; }
+  .healing-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: center; }
+  .healing-label { font-size: 0.58rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--blush-deep); opacity: 0.7; margin-bottom: 1.5rem; }
+  .healing-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--burgundy); line-height: 1.15; }
+  .healing-title em { font-style: italic; }
+  .healing-body p { font-size: 0.82rem; line-height: 2.2; color: var(--brown); opacity: 0.7; margin-bottom: 1.2rem; }
+  .healing-body p:last-child { margin-bottom: 0; }
+  .healing-ask { margin-top: 2rem; padding: 1.5rem 2rem; border-left: 2px solid rgba(196,132,90,0.25); }
+  .healing-ask p { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--blush-deep); opacity: 0.7; margin-bottom: 0; }
 
   /* ── LIVE RETREATS ── */
   .live-section { background: var(--green); padding: 9rem 3rem; position: relative; overflow: hidden; }
@@ -98,10 +124,9 @@
   .live-note { margin-top: 3rem; text-align: center; padding: 2rem; border: 1px solid rgba(255,255,255,0.05); }
   .live-note p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--cream); opacity: 0.4; }
 
-  /* ── B2B SECTION ── */
-  .b2b-section { background: var(--blush); padding: 9rem 3rem; }
+  /* ── B2B ── */
+  .b2b-section { background: var(--cream); padding: 9rem 3rem; }
   .b2b-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 8rem; align-items: center; }
-  .b2b-text {}
   .b2b-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--burgundy); margin-bottom: 2rem; }
   .b2b-text h2 em { font-style: italic; }
   .b2b-text p { font-size: 0.82rem; line-height: 2.2; color: var(--brown); opacity: 0.75; margin-bottom: 1rem; }
@@ -116,14 +141,16 @@
   .b2b-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--burgundy); margin-bottom: 0.6rem; }
   .b2b-card-desc { font-size: 0.78rem; color: var(--brown); opacity: 0.65; line-height: 1.8; }
 
-  <!-- ── GEO STRIP ── -->
-  .geo-strip { background: var(--burgundy); padding: 1.5rem 3rem; text-align: center; border-top: 1px solid rgba(201,169,110,0.08); }
-  .geo-strip p { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(201,169,110,0.28); }
-  .geo-strip span { margin: 0 1.2rem; opacity: 0.4; }
-
-  /* ── POSITIONING STRIP ── */
-  .position-strip { background: var(--burgundy-deep); padding: 6rem 3rem; text-align: center; }
-  .position-strip p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.5vw, 2.2rem); font-weight: 300; font-style: italic; color: var(--cream); opacity: 0.35; max-width: 800px; margin: 0 auto; line-height: 1.7; }
+  /* ── SETTING ── */
+  .setting-section { background: var(--green-mid); padding: 9rem 3rem; }
+  .setting-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+  .setting-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 2rem; }
+  .setting-text h2 em { font-style: italic; color: var(--blush); opacity: 0.8; }
+  .setting-text p { font-size: 0.82rem; line-height: 2.2; color: var(--cream); opacity: 0.5; margin-bottom: 1rem; }
+  .setting-details { display: flex; flex-direction: column; gap: 1px; }
+  .setting-detail { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 1.2rem 1.5rem; background: rgba(201,169,110,0.04); border: 1px solid rgba(201,169,110,0.06); }
+  .setting-detail-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,169,110,0.5); }
+  .setting-detail-value { font-size: 0.78rem; color: rgba(240,237,228,0.5); }
 
   /* ── CTA ── */
   .cta-section { background: var(--burgundy); padding: 9rem 3rem; text-align: center; position: relative; overflow: hidden; }
@@ -137,6 +164,8 @@
   .cta-btn:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); }
   .cta-btn.secondary { color: rgba(240,237,228,0.4); border-color: rgba(240,237,228,0.1); }
   .cta-btn.secondary:hover { color: var(--cream); border-color: rgba(240,237,228,0.3); background: transparent; }
+  .cta-btn.green { color: var(--cream); border-color: rgba(255,255,255,0.2); }
+  .cta-btn.green:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
 
   /* ── FOOTER ── */
   footer { background: var(--brown); padding: 2.5rem 3.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
@@ -155,20 +184,22 @@
   @media (max-width: 900px) {
     nav { padding: 1.5rem 2rem; }
     .nav-links { display: none; }
-    .types-intro { grid-template-columns: 1fr; gap: 2rem; }
-    .types-grid { grid-template-columns: 1fr 1fr; }
+    .formats-intro { grid-template-columns: 1fr; gap: 2rem; }
+    .formats-grid { grid-template-columns: 1fr; }
+    .included-grid { grid-template-columns: 1fr 1fr; }
+    .healing-inner { grid-template-columns: 1fr; gap: 3rem; }
     .live-header { grid-template-columns: 1fr; gap: 2rem; }
     .live-card { grid-template-columns: 7rem 1fr; }
     .live-card-tag { display: none; }
     .b2b-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .setting-inner { grid-template-columns: 1fr; gap: 3rem; }
     .hero-meta { gap: 2rem; }
   }
   @media (max-width: 600px) {
-    .types-grid { grid-template-columns: 1fr; }
+    .included-grid { grid-template-columns: 1fr; }
     .live-card { grid-template-columns: 1fr; gap: 1rem; }
     .hero { padding: 8rem 2rem 5rem; }
-    .types-section, .live-section, .b2b-section, .cta-section { padding: 6rem 2rem; }
-    .position-strip { padding: 4rem 2rem; }
+    .formats-section, .included-section, .healing-section, .live-section, .b2b-section, .setting-section, .cta-section { padding: 6rem 2rem; }
     footer { padding: 2rem; }
   }
 </style>
@@ -181,12 +212,11 @@
 <nav>
   <a href="index.html" class="nav-logo">Pink Camel</a>
   <ul class="nav-links">
-    <li><a href="#retreat-types">Retreat Types</a></li>
-    <li><a href="#live">Live Retreats</a></li>
-    <li><a href="#b2b">For Your Clients</a></li>
-    <li><a href="#contact">Enquire</a></li>
+    <li><a href="pinkcamelretreats.html">Retreats</a></li>
+    <li><a href="business-concierge.html">Concierge</a></li>
+    <li><a href="inner-circle.html">Inner Circle</a></li>
   </ul>
-  <a href="index.html" class="nav-back">← Pink Camel</a>
+  <a href="index.html" class="nav-back">Home</a>
 </nav>
 
 <!-- ══════════════════ HERO ══════════════════ -->
@@ -200,22 +230,22 @@
     <circle cx="250" cy="250" r="4" fill="rgba(201,169,110,0.3)"/>
   </svg>
   <div style="position: relative; z-index: 2;">
-    <p class="hero-eyebrow animate-in">The Serra · Portugal &amp; Morocco · 2026</p>
+    <p class="hero-eyebrow animate-in">Pink Camel Retreats · The Serra · Portugal 2026</p>
     <h1 class="hero-title animate-in">Between what was<br>and what comes<br><em>next.</em></h1>
-    <p class="hero-sub animate-in">Some transitions are too significant for an ordinary room. Business expansions. Life relocations. The moments where your life gets reorganised — Pink Camel Retreats holds that space, in nature, in Portugal.</p>
+    <p class="hero-sub animate-in">A retreat built on Health, Nutrition, Calm, Mindfulness, and the Elements. How you come — solo, with one other person, or with a group — is the only choice. Deep Healing is available to anyone who needs it.</p>
     <p class="hero-pull animate-in">"We carry lives too full to be managed, too intentional to be compromised."</p>
     <div class="hero-meta animate-in">
       <div class="hero-meta-item">
-        <div class="hero-meta-label">Primary Location</div>
+        <div class="hero-meta-label">Location</div>
         <div class="hero-meta-value">The Serra · Portugal</div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-label">Also Available</div>
-        <div class="hero-meta-value">Morocco · Desert &amp; Medina</div>
+        <div class="hero-meta-value">Morocco · Desert & Medina</div>
       </div>
       <div class="hero-meta-item">
-        <div class="hero-meta-label">Dates</div>
-        <div class="hero-meta-value">June &amp; September 2026</div>
+        <div class="hero-meta-label">Formats</div>
+        <div class="hero-meta-value">Private · Duo · Small Group</div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-label">Operations</div>
@@ -230,51 +260,92 @@
   <p class="animate-in">Lisbon <span>·</span> Sofia <span>·</span> Marrakech <span>·</span> Dubai <span>—</span> Europe <span>·</span> Africa <span>·</span> Middle East</p>
 </div>
 
-<!-- ══════════════════ RETREAT TYPES ══════════════════ -->
-<section class="types-section" id="retreat-types">
-  <div class="types-inner">
-    <p class="label animate-in">Retreat Formats</p>
-    <div class="types-intro">
-      <h2 class="animate-in">Five ways<br>to leave<br><em>different.</em></h2>
-      <p class="animate-in">Each format is built around a specific kind of transition. Not a programme you join — a structure designed for what you are carrying. The elements are the same. The depth and pace are chosen to fit your moment.</p>
+<!-- ══════════════════ HOW YOU COME — FORMATS ══════════════════ -->
+<section class="formats-section">
+  <div class="formats-inner">
+    <p class="label animate-in">How you come</p>
+    <div class="formats-intro">
+      <h2 class="animate-in">Three ways<br>to come.<br><em>The rest is the same.</em></h2>
+      <p class="animate-in">Every Pink Camel retreat is built on the same foundation: Health, Nutrition, Calm, Mindfulness, and the Elements. How you come — alone, with one other person, or with a small group — is the format you choose. The content does not change. The setting does not change. Only who you are with.</p>
     </div>
-    <div class="types-grid">
+    <div class="formats-grid">
 
-      <div class="type-card animate-in">
-        <span class="type-card-num">01</span>
-        <h3 class="type-card-title"><em>Strategic</em> Reset</h3>
-        <p class="type-card-desc">For founders and leaders between major decisions. The clarity that a familiar environment cannot provide — the Serra offers it freely. Where the next chapter stops being an idea and becomes a direction.</p>
-        <p class="type-card-detail">3–6 people · 3 or 6 nights</p>
+      <div class="format-card animate-in">
+        <span class="format-card-num">Private</span>
+        <h3 class="format-card-title"><em>Solo.</em> One person.</h3>
+        <p class="format-card-desc">The retreat is built entirely around your situation. What you are carrying. What needs to land. What comes next. No group, no compromise — the full arc of the retreat, shaped entirely around you.</p>
+        <p class="format-card-detail">Solo · 3–10 days · The Serra, Portugal</p>
       </div>
 
-      <div class="type-card animate-in">
-        <span class="type-card-num">02</span>
-        <h3 class="type-card-title"><em>Relocation</em> Prep</h3>
-        <p class="type-card-desc">Before a move — across cities, countries, continents. The Serra gives you space to arrive at what is actually changing before you enact it. What the body knows about the move before the mind commits.</p>
-        <p class="type-card-detail">Solo or duo · 3–10 days</p>
+      <div class="format-card animate-in">
+        <span class="format-card-num">Duo</span>
+        <h3 class="format-card-title"><em>Duo.</em> Two people.</h3>
+        <p class="format-card-desc">Two people who need to think together — a couple at an inflection point, two partners, two close colleagues. The retreat is designed for the space between you, and what that space needs to do.</p>
+        <p class="format-card-detail">Two people · 3–10 days · The Serra, Portugal</p>
       </div>
 
-      <div class="type-card animate-in">
-        <span class="type-card-num">03</span>
-        <h3 class="type-card-title"><em>Decision</em> Retreat</h3>
-        <p class="type-card-desc">Before signing, restructuring, announcing, committing. Not a strategy session — a setting where what has been circling finally lands. The decision becomes clear here. It stays clear on return.</p>
-        <p class="type-card-detail">Solo · 3–6 nights</p>
+      <div class="format-card animate-in">
+        <span class="format-card-num">Small Group</span>
+        <h3 class="format-card-title"><em>Group.</em> Up to 8.</h3>
+        <p class="format-card-desc">A private group of people who already belong to each other — friends, family, a close circle. The retreat is designed for your specific group, your specific moment. The land holds what ordinary life doesn't.</p>
+        <p class="format-card-detail">3–8 people · 3 or 6 nights · Portugal or Morocco</p>
       </div>
 
-      <div class="type-card animate-in">
-        <span class="type-card-num">04</span>
-        <h3 class="type-card-title"><em>Executive</em> Rest</h3>
-        <p class="type-card-desc">For leaders who have been carrying too much for too long. Not a wellness break — a return to the version of yourself that was there before the noise. Deep rest, deliberately structured.</p>
-        <p class="type-card-detail">Solo · 3–6 nights</p>
-      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="type-card animate-in">
-        <span class="type-card-num">05</span>
-        <h3 class="type-card-title"><em>Group &amp;</em> B2B</h3>
-        <p class="type-card-desc">Friends, families, teams. The people who matter to each other, in a place that holds what ordinary life doesn't leave space for. Also: retreats for your clients' clients — held in absolute discretion, in Portugal or Morocco.</p>
-        <p class="type-card-detail">Up to 8 people · 3 or 6 nights · Portugal or Morocco</p>
+<!-- ══════════════════ ALWAYS INCLUDED ══════════════════ -->
+<section class="included-section">
+  <div class="included-inner">
+    <div class="included-header">
+      <h2 class="animate-in">What's always<br><em>included.</em></h2>
+      <p class="animate-in">Health. Nutrition. Calm. Mindfulness. The Elements. Same for everyone. This is the foundation — not a feature list.</p>
+    </div>
+    <div class="included-grid">
+      <div class="included-item animate-in">
+        <span class="included-glyph">◈</span>
+        <div class="included-name">Health</div>
+        <p class="included-desc">Yoga on the river sand. Forest bathing. Spa, massage, Turkish bath. The body opens first.</p>
       </div>
+      <div class="included-item animate-in">
+        <span class="included-glyph">◆</span>
+        <div class="included-name">Nutrition</div>
+        <p class="included-desc">Every meal curated around what the body actually needs. Food as a coming-back practice.</p>
+      </div>
+      <div class="included-item animate-in">
+        <span class="included-glyph">○</span>
+        <div class="included-name">Calm</div>
+        <p class="included-desc">The nervous system is the first thing the Serra works on. The silence here is not curated. It is the valley.</p>
+      </div>
+      <div class="included-item animate-in">
+        <span class="included-glyph">☙</span>
+        <div class="included-name">Mindfulness</div>
+        <p class="included-desc">Not a session. Not a technique. The land teaches this without announcing it. Woven through every day.</p>
+      </div>
+      <div class="included-item animate-in">
+        <span class="included-glyph">✦</span>
+        <div class="included-name">Elements</div>
+        <p class="included-desc">Air · Earth · Fire · Water · Forest · Windmill · River · Silence. The landscape, not a philosophy.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ══════════════════ DEEP HEALING ══════════════════ -->
+<section class="healing-section">
+  <div class="healing-inner">
+    <div>
+      <p class="healing-label animate-in">Option</p>
+      <h2 class="healing-title animate-in">Deep Healing<br><em>available when needed.</em></h2>
+    </div>
+    <div class="healing-body">
+      <p class="animate-in">Deep Healing is not a separate retreat type. It is an add-on layer — available to anyone in any format, if the situation requires it.</p>
+      <p class="animate-in">Leaders who are carrying something heavier than what a standard retreat addresses. Not a crisis. Not therapy. But a weight that needs a different kind of holding — and a different kind of environment to set it down properly.</p>
+      <div class="healing-ask animate-in">
+        <p>"Is there something specific you are carrying? Something that requires a different kind of attention? We can discuss this in the conversation, if it feels relevant."</p>
+      </div>
+      <p class="animate-in" style="margin-top: 1.5rem; font-size: 0.78rem; opacity: 0.5; font-style: italic;">Requested at enquiry. Designed specifically. Held with the same discretion as everything else Pink Camel does.</p>
     </div>
   </div>
 </section>
@@ -287,7 +358,7 @@
         <p class="label animate-in" style="color: var(--blush);">Open for 2026</p>
         <h2 class="animate-in">Retreats<br>that are<br><em>happening now.</em></h2>
       </div>
-      <p class="animate-in">Each retreat is designed around a specific group. Dates are held for confirmed bookings — when your group commits, the dates are yours. Enquire to begin.</p>
+      <p class="animate-in">Each retreat is designed around a specific group. Dates are held for confirmed bookings. Enquire to begin — tell us your format, your preferred duration, and what you are facing.</p>
     </div>
     <div class="live-grid">
 
@@ -295,13 +366,13 @@
         <div>
           <div class="live-date-label">June</div>
           <div class="live-date-value">14–20</div>
-          <div class="live-date-sub">2026 · 6 nights</div>
+          <div class="live-date-sub">2026 · 6 nights · Small Group</div>
         </div>
         <div>
-          <div class="live-card-title">June Group Retreat — <em>The Full Arc</em></div>
-          <p class="live-card-desc">All eight elements across six nights. The complete Serra experience — windmill ridge, river day, sound bath, closing circle. Maximum 8 people.</p>
+          <div class="live-card-title">The Full Arc — <em>Small Group</em></div>
+          <p class="live-card-desc">All eight elements across six nights. The complete Serra experience. Maximum 8 people.</p>
         </div>
-        <div class="live-card-tag">Filling</div>
+        <div class="live-card-tag">FILLING</div>
       </div>
 
       <div class="live-card animate-in">
@@ -311,23 +382,23 @@
           <div class="live-date-sub">2026 · 3 nights</div>
         </div>
         <div>
-          <div class="live-card-title">Short Immersion — <em>Earth &amp; Water</em></div>
-          <p class="live-card-desc">Three nights, four days. River, forest, spa, one sound bath. For groups who want to begin before committing to the full arc.</p>
+          <div class="live-card-title">Short Immersion — <em>Earth & Water</em></div>
+          <p class="live-card-desc">Three nights. River, forest, spa, one sound bath. For groups who want to begin before committing to the full arc.</p>
         </div>
-        <div class="live-card-tag">Open</div>
+        <div class="live-card-tag">OPEN</div>
       </div>
 
       <div class="live-card animate-in">
         <div>
           <div class="live-date-label">Sept</div>
           <div class="live-date-value">7–13</div>
-          <div class="live-date-sub">2026 · 6 nights</div>
+          <div class="live-date-sub">2026 · 6 nights · Small Group</div>
         </div>
         <div>
-          <div class="live-card-title">September Group Retreat — <em>The Full Arc</em></div>
-          <p class="live-card-desc">The September retreat — held when the hills are quieter, the river warmer, the light softer. The same full arc, a different season.</p>
+          <div class="live-card-title">The Full Arc — <em>September</em></div>
+          <p class="live-card-desc">The hills quieter, the river warmer, the light softer. The same full arc, a different season.</p>
         </div>
-        <div class="live-card-tag">Open</div>
+        <div class="live-card-tag">OPEN</div>
       </div>
 
       <div class="live-card animate-in">
@@ -337,10 +408,10 @@
           <div class="live-date-sub">2026 · 3 nights</div>
         </div>
         <div>
-          <div class="live-card-title">Short Immersion — <em>Earth &amp; Water</em></div>
-          <p class="live-card-desc">The closing short retreat of the season. River day, forest bathing, fire circle. For those joining the September full week, or arriving separately.</p>
+          <div class="live-card-title">Short Immersion — <em>Closing Retreat</em></div>
+          <p class="live-card-desc">River day, forest bathing, fire circle. For those joining the September full week, or arriving separately.</p>
         </div>
-        <div class="live-card-tag">Open</div>
+        <div class="live-card-tag">OPEN</div>
       </div>
 
       <div class="live-card animate-in">
@@ -351,64 +422,90 @@
         </div>
         <div>
           <div class="live-card-title">Private Retreat — <em>Your Dates, Your Depth</em></div>
-          <p class="live-card-desc">Solo, duo, or a closed group. Dates, duration, and depth built entirely around your situation. The most deliberate option. Begin with a conversation.</p>
+          <p class="live-card-desc">Solo, duo, or a closed group. Dates, duration, and depth built entirely around your situation.</p>
         </div>
-        <div class="live-card-tag">On Request</div>
+        <div class="live-card-tag">ON REQUEST</div>
       </div>
 
     </div>
     <div class="live-note animate-in">
-      <p>Private retreats available year-round in Portugal or Morocco. Bespoke formats can be built to your calendar and location — contact us to discuss.</p>
+      <p>Private retreats available year-round in Portugal or Morocco. Bespoke formats built to your calendar and location.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ B2B SECTION ══════════════════ -->
-<section class="b2b-section" id="b2b">
+<!-- ══════════════════ B2B ══════════════════ -->
+<section class="b2b-section">
   <div class="b2b-inner">
     <div class="b2b-text">
-      <p class="label animate-in" style="color: var(--blush-deep);">For Your Clients</p>
-      <h2 class="animate-in">Retreats for<br>the people<br>who trust you.</h2>
-      <p class="animate-in">If you work with leaders, founders, or high-performing individuals — Pink Camel Retreats can be designed exclusively for your clients' clients. A discreet, high-touch offering that carries your brand values, built and held in complete confidentiality.</p>
-      <p class="animate-in">This is not a referral arrangement. This is a built offering — for your circles, your community, your clients. We design it. We hold it. Your clients experience something that reflects directly on you.</p>
-      <a href="mailto:retreats@pinkcamel.club?subject=B2B Retreat Enquiry" class="b2b-cta animate-in">Begin a conversation</a>
+      <p class="label animate-in">For your clients</p>
+      <h2 class="animate-in">Retreats for the people<br><em>who trust you.</em></h2>
+      <p class="animate-in">If you work with leaders, founders, or high-performing individuals — Pink Camel Retreats can be designed exclusively for your clients' clients. A discreet, high-touch offering built and held in complete confidentiality.</p>
+      <a href="mailto:retreats@pinkcamel.club" class="b2b-cta">Begin a conversation</a>
     </div>
     <div class="b2b-cards">
       <div class="b2b-card animate-in">
-        <div class="b2b-card-tag">Exclusive Offering</div>
-        <div class="b2b-card-title">Private Groups — Your Circles</div>
-        <p class="b2b-card-desc">Built exclusively for the people you bring together. Retreated held in absolute discretion — your community, your members, your clients, without your brand anywhere on the experience.</p>
+        <p class="b2b-card-tag">Exclusive Offering</p>
+        <p class="b2b-card-title">Private Groups — Your Circles</p>
+        <p class="b2b-card-desc">Built exclusively for the people you bring together. Held in absolute discretion — your community, your clients, without your brand anywhere on the experience.</p>
       </div>
-
       <div class="b2b-card animate-in">
-        <div class="b2b-card-tag">Bespoke Design</div>
-        <div class="b2b-card-title">Co-created Experiences</div>
+        <p class="b2b-card-tag">Bespoke Design</p>
+        <p class="b2b-card-title">Co-created Experiences</p>
         <p class="b2b-card-desc">Designed to carry your identity. For member clubs, networks, or leadership communities — aligned with your positioning, held entirely by Pink Camel.</p>
       </div>
-
       <div class="b2b-card animate-in">
-        <div class="b2b-card-tag">Maximum Discretion</div>
-        <div class="b2b-card-title">Your Clients' Clients, Held Safely</div>
-        <p class="b2b-card-desc">Some referrals travel through trusted chains. Every detail is held quietly — no mention of your clients' clients, no records shared, no traces left beyond the experience itself.</p>
+        <p class="b2b-card-tag">Maximum Discretion</p>
+        <p class="b2b-card-title">Your Clients' Clients, Held Safely</p>
+        <p class="b2b-card-desc">Every detail held quietly — no mention, no records shared, no traces left beyond the experience itself.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ POSITIONING STRIP ══════════════════ -->
-<section class="position-strip">
-  <p class="animate-in">"We carry lives too full to be managed, too intentional to be compromised."</p>
+<!-- ══════════════════ THE SETTING ══════════════════ -->
+<section class="setting-section">
+  <div class="setting-inner">
+    <div class="setting-text">
+      <p class="label animate-in" style="color: rgba(201,169,110,0.5);">The Serra · Portugal</p>
+      <h2 class="animate-in">The land does<br><em>half the work.</em></h2>
+      <p class="animate-in">An ancient range of hills in central Portugal — pine forests that breathe, a river that runs cold and clear, stone windmills on a ridge that has held wind for centuries. The house sits in the valley: pool, Turkish bath, sauna, fire pit, gardens.</p>
+      <p class="animate-in" style="font-style: italic; opacity: 0.4; font-size: 0.72rem; margin-top: 1.5rem;">Exact location shared with confirmed groups.</p>
+    </div>
+    <div class="setting-details">
+      <div class="setting-detail animate-in">
+        <div class="setting-detail-label">Terrain</div>
+        <div class="setting-detail-value">Pine forests, river beach, stone windmill ridge, valley gardens</div>
+      </div>
+      <div class="setting-detail animate-in">
+        <div class="setting-detail-label">The house</div>
+        <div class="setting-detail-value">Pool, Turkish bath, sauna, fire pit, gardens, river access</div>
+      </div>
+      <div class="setting-detail animate-in">
+        <div class="setting-detail-label">Dark sky</div>
+        <div class="setting-detail-value">No light pollution — full stargazing from the garden</div>
+      </div>
+      <div class="setting-detail animate-in">
+        <div class="setting-detail-label">Airports</div>
+        <div class="setting-detail-value">Porto & Lisbon — we collect you and return you</div>
+      </div>
+      <div class="setting-detail animate-in">
+        <div class="setting-detail-label">Weather</div>
+        <div class="setting-detail-value">June: 24–28°C · September: 22–26°C</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════ CTA ══════════════════ -->
-<section class="cta-section" id="contact">
+<section class="cta-section">
   <div class="cta-inner">
-    <p class="label label-center animate-in">Begin Here</p>
-    <h2 class="cta-title animate-in">A conversation<br>before<br><em>anything else.</em></h2>
-    <p class="cta-sub animate-in">We need to understand what you are facing before we can say whether this is the right thing — and how to build it. Not a form, not a brochure. A real conversation, first.</p>
+    <p style="font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 2rem;" class="animate-in">Begin Here</p>
+    <h2 class="cta-title animate-in">A conversation<br>before <em>anything else.</em></h2>
+    <p class="cta-sub animate-in">Tell us your format — Private, Duo, or Small Group — your preferred duration, and what you are facing. We'll come back within 48 hours with a first honest assessment.</p>
     <div class="cta-links animate-in">
-      <a href="retreats-detail.html" class="cta-btn">See the Full Program</a>
-      <a href="mailto:retreats@pinkcamel.club" class="cta-btn secondary">retreats@pinkcamel.club</a>
+      <a href="mailto:retreats@pinkcamel.club" class="cta-btn">retreats@pinkcamel.club</a>
+      <a href="retreats-detail.html" class="cta-btn secondary">See the Full Program</a>
     </div>
   </div>
 </section>
@@ -419,24 +516,14 @@
 </footer>
 
 <script>
-  /* ── CURSOR ── */
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx - 4 + 'px'; cursor.style.top = my - 4 + 'px'; });
   function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx - 16 + 'px'; ring.style.top = ry - 16 + 'px'; requestAnimationFrame(animRing); }
   animRing();
-  document.querySelectorAll('a, button, .type-card, .live-card, .b2b-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.5)'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; });
-  });
-
-  /* ── SCROLL ANIMATIONS ── */
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 90); }
-    });
-  }, { threshold: 0.1 });
+  document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; }); });
+  const obs = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80); }); }, { threshold: 0.12 });
   document.querySelectorAll('.animate-in').forEach(el => obs.observe(el));
 </script>
 </body>
