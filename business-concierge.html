@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Concierge — Pink Camel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --burgundy: #2C1008;
+    --burgundy-deep: #1a0905;
+    --cream: #F5F0E8;
+    --gold: #C9A96E;
+    --gold-dim: rgba(201,169,110,0.35);
+    --green: #0D3B2E;
+    --blush: #E8C4B0;
+    --blush-deep: #C4845A;
+    --brown: #3D1A0A;
+    --ink: #2a2420;
+    --ink-muted: #6b5c52;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Didact Gothic', sans-serif; background: var(--burgundy); color: var(--cream); overflow-x: hidden; }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; mix-blend-mode: difference; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); opacity: 0.6; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(44,16,8,0.88); backdrop-filter: blur(14px); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.5; transition: opacity 0.3s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-back { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; opacity: 0.6; transition: opacity 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+  .nav-back:hover { opacity: 1; }
+  .nav-back::before { content: '←'; }
+
+  /* ── HERO ── */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 3rem 7rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(201,169,110,0.07) 0%, transparent 60%); pointer-events: none; }
+  .hero-ornament { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.035; pointer-events: none; }
+  .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; opacity: 0.75; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 2.5rem; letter-spacing: -0.01em; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 0.82rem; line-height: 2.3; color: var(--cream); opacity: 0.45; max-width: 520px; margin: 0 auto 3rem; letter-spacing: 0.02em; }
+  .hero-pull { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--gold); opacity: 0.6; margin-bottom: 4rem; }
+
+  /* ── SECTION LABEL ── */
+  .label { font-size: 0.58rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; opacity: 0.7; display: flex; align-items: center; gap: 1rem; }
+  .label::before { content: ''; width: 2rem; height: 1px; background: currentColor; opacity: 0.6; flex-shrink: 0; }
+  .label-center { justify-content: center; }
+  .label-center::before { display: none; }
+
+  /* ── FRAMING SECTION ── */
+  .framing { background: var(--cream); color: var(--burgundy); padding: 9rem 3rem; }
+  .framing-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; align-items: start; }
+  .framing h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--burgundy); margin-bottom: 2rem; }
+  .framing h2 em { font-style: italic; }
+  .framing p { font-size: 0.85rem; line-height: 2.2; color: var(--brown); opacity: 0.8; margin-bottom: 1.5rem; max-width: 60ch; }
+
+  /* ── WHAT THIS IS ── */
+  .what-is { background: var(--burgundy); padding: 9rem 3rem; }
+  .what-is-inner { max-width: 1000px; margin: 0 auto; }
+  .what-is h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 3rem; }
+  .what-is h2 em { font-style: italic; color: var(--gold); }
+  .what-is-body { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .what-is p { font-size: 0.85rem; line-height: 2.2; color: var(--cream); opacity: 0.6; margin-bottom: 1.2rem; max-width: 50ch; }
+  .what-is p:last-child { margin-bottom: 0; }
+
+  /* ── WHAT WE CARRY ── */
+  .carry-section { background: var(--burgundy-deep); padding: 9rem 3rem; }
+  .carry-inner { max-width: 1000px; margin: 0 auto; }
+  .carry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; }
+  .carry-item { padding: 2.5rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,169,110,0.06); }
+  .carry-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; color: var(--cream); margin-bottom: 1rem; }
+  .carry-item p { font-size: 0.78rem; line-height: 1.9; color: var(--cream); opacity: 0.45; }
+
+  /* ── WHO FOR ── */
+  .who-for { background: var(--cream); color: var(--burgundy); padding: 9rem 3rem; text-align: center; }
+  .who-for h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 300; color: var(--burgundy); margin-bottom: 2rem; line-height: 1.2; }
+  .who-for p { font-size: 0.85rem; line-height: 2.2; color: var(--brown); opacity: 0.7; max-width: 55ch; margin: 0 auto 2rem; }
+
+  /* ── FORMAT ── */
+  .format-section { background: var(--burgundy); padding: 7rem 3rem; }
+  .format-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .format-inner p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.6rem); font-style: italic; color: var(--cream); opacity: 0.5; line-height: 1.8; }
+
+  /* ── GEO STRIP ── */
+  .geo-strip { background: var(--burgundy-deep); padding: 1.5rem 3rem; text-align: center; border-top: 1px solid rgba(201,169,110,0.08); }
+  .geo-strip p { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(201,169,110,0.25); }
+  .geo-strip span { margin: 0 1.2rem; opacity: 0.4; }
+
+  /* ── LIFE & CONTINUITY ── */
+  .life-section { background: var(--green); padding: 9rem 3rem; }
+  .life-inner { max-width: 1000px; margin: 0 auto; }
+  .life-label { font-size: 0.58rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--blush); margin-bottom: 2.5rem; opacity: 0.8; }
+  .life-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 3rem; }
+  .life-title em { font-style: italic; color: var(--blush); }
+  .life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .life-col p { font-size: 0.85rem; line-height: 2.2; color: var(--cream); opacity: 0.55; margin-bottom: 1.2rem; }
+  .life-items { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .life-items li { font-size: 0.78rem; color: var(--cream); opacity: 0.5; display: flex; gap: 0.8rem; align-items: flex-start; line-height: 1.8; }
+  .life-items li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+  /* ── CTA ── */
+  .cta-section { background: var(--burgundy); padding: 9rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.05) 0%, transparent 60%); pointer-events: none; }
+  .cta-inner { max-width: 580px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 2rem; }
+  .cta-title em { font-style: italic; color: var(--gold); }
+  .cta-sub { font-size: 0.8rem; line-height: 2.1; color: var(--cream); opacity: 0.4; margin-bottom: 3.5rem; }
+  .cta-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .cta-btn { display: inline-block; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,0.25); padding: 1rem 2.5rem; text-decoration: none; transition: all 0.4s ease; }
+  .cta-btn:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); }
+  .cta-btn.secondary { color: rgba(240,237,228,0.4); border-color: rgba(240,237,228,0.1); }
+  .cta-btn.secondary:hover { color: var(--cream); border-color: rgba(240,237,228,0.3); background: transparent; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--brown); padding: 2.5rem 3.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); opacity: 0.35; text-decoration: none; }
+  .footer-copy { font-size: 0.6rem; color: var(--cream); opacity: 0.18; letter-spacing: 0.1em; }
+
+  /* ── ANIMATIONS ── */
+  .animate-in { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--burgundy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); opacity: 0.35; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+    .framing-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .what-is-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .carry-grid { grid-template-columns: 1fr 1fr; }
+    .life-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 600px) {
+    .carry-grid { grid-template-columns: 1fr; }
+    .hero { padding: 8rem 2rem 5rem; }
+    .framing, .what-is, .carry-section, .who-for, .life-section, .cta-section { padding: 6rem 2rem; }
+    footer { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Pink Camel</a>
+  <ul class="nav-links">
+    <li><a href="pinkcamelretreats.html">Retreats</a></li>
+    <li><a href="business-concierge.html">Concierge</a></li>
+    <li><a href="inner-circle.html">Inner Circle</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">Home</a>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <svg class="hero-ornament" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="250" r="200" stroke="rgba(201,169,110,0.4)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="140" stroke="rgba(201,169,110,0.25)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="80" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+    <line x1="50" y1="250" x2="450" y2="250" stroke="rgba(201,169,110,0.08)" stroke-width="0.5"/>
+    <line x1="250" y1="50" x2="250" y2="450" stroke="rgba(201,169,110,0.08)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="4" fill="rgba(201,169,110,0.3)"/>
+  </svg>
+  <div style="position: relative; z-index: 2;">
+    <p class="hero-eyebrow animate-in">Business Concierge · Pink Camel</p>
+    <h1 class="hero-title animate-in">The complex stuff<br>doesn't<br><em>manage itself.</em></h1>
+    <p class="hero-sub animate-in">For leaders and founders expanding a business — when the complexity exceeds what you can handle alone, and the things you're carrying are too specific for a standard service.</p>
+    <p class="hero-pull animate-in">"We carry lives too full to be managed, too intentional to be compromised."</p>
+  </div>
+</section>
+
+<!-- ══════════════════ FRAMING ══════════════════ -->
+<section class="framing">
+  <div class="framing-inner">
+    <div>
+      <p class="label animate-in">The frame</p>
+      <h2 class="animate-in">You built something.<br>Now you are running it<br><em>while building the next version.</em></h2>
+    </div>
+    <div>
+      <p class="animate-in">The market is new. The team is new. The demands on your time and attention are not slowing down. And the personal infrastructure — the things that let you actually think — have not caught up with the professional ambition.</p>
+      <p class="animate-in">A business concierge is not a personal assistant. It is not a virtual assistant service. It is a continuity partner for people whose business complexity is genuinely too much to manage alone — and whose situation is too specific for generic solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHAT THIS IS ══════════════════ -->
+<section class="what-is">
+  <div class="what-is-inner">
+    <h2 class="animate-in">Not a service.<br><em>A relationship.</em></h2>
+    <div class="what-is-body">
+      <div>
+        <p class="animate-in">We don't offer task management. We offer presence — across whatever arises. The things you would handle yourself if you had the structure to handle them. The things that don't fit inside a normal service because they are too sensitive, too ongoing, or too specific to your situation.</p>
+        <p class="animate-in">Some clients need someone present when decisions can't wait. Others need the operational weight lifted so the thinking can happen. Some need both, at different moments in the same quarter.</p>
+        <p class="animate-in" style="font-style: italic; opacity: 0.35; margin-top: 1rem;">We stay. The complexity continues. So do we.</p>
+      </div>
+      <div>
+        <p class="animate-in">Business Concierge is ongoing, not project-based. We work with a small number of clients at any given time — because the relationship requires it, and because the standard demands it.</p>
+        <p class="animate-in">Enquire first. Not to apply for a service. To begin a conversation about whether the fit is right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHAT WE CARRY ══════════════════ -->
+<section class="carry-section">
+  <div class="carry-inner">
+    <p class="label animate-in">The territory</p>
+    <h2 class="animate-in" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; color: var(--cream); margin-bottom: 1rem;">What we carry.</h2>
+    <p class="animate-in" style="font-size: 0.82rem; line-height: 2.2; color: var(--cream); opacity: 0.4; max-width: 60ch; margin-bottom: 3rem;">Every engagement is different. What we handle is defined by what you are facing, not by a menu of services.</p>
+    <div class="carry-grid">
+      <div class="carry-item animate-in">
+        <h3>Market entry operations</h3>
+        <p>Setting up, getting situated, getting things done in new contexts across the triangle.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Team building across borders</h3>
+        <p>Finding the right people, onboarding with care, building culture remotely and locally.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Scheduling and presence</h3>
+        <p>Protecting the time that thinking requires — the hours that would otherwise disappear into logistics.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Reference and connection</h3>
+        <p>The right introductions, the right conversations, the right rooms in the right cities.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Operational oversight</h3>
+        <p>The things that need handling while you are somewhere else — with the same care you would give them yourself.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Ongoing decisions</h3>
+        <p>Someone present for the moments between decisions — when the thread needs holding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHO FOR ══════════════════ -->
+<section class="who-for">
+  <div class="who-for-inner" style="max-width: 800px; margin: 0 auto;">
+    <p class="label label-center animate-in">The fit</p>
+    <h2 class="animate-in">For people whose businesses<br><em>are outpacing their infrastructure.</em></h2>
+    <p class="animate-in">Not every business needs this. A small number need what Pink Camel offers — a continuity partner when the complexity is too high and the stakes are too present to delegate to someone who doesn't fully understand the situation.</p>
+    <p class="animate-in" style="font-style: italic; opacity: 0.5; margin-top: 2rem;">If you recognise something in this, a conversation is the right next step. We'll know quickly whether this is the right fit. And so will you.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ FORMAT ══════════════════ -->
+<section class="format-section">
+  <div class="format-inner">
+    <p class="animate-in">Business Concierge is an ongoing retainer. It is not a project with a scope — it is a relationship that continues.</p>
+    <p class="animate-in" style="margin-top: 1rem; opacity: 0.4;">Begin with a conversation. concierge@pinkcamel.club</p>
+  </div>
+</section>
+
+<!-- ══════════════════ GEO STRIP ══════════════════ -->
+<div class="geo-strip">
+  <p class="animate-in">Lisbon <span>·</span> Sofia <span>·</span> Marrakech <span>·</span> Dubai <span>—</span> Europe <span>·</span> Africa <span>·</span> Middle East</p>
+</div>
+
+<!-- ══════════════════ LIFE & CONTINUITY ══════════════════ -->
+<section class="life-section">
+  <div class="life-inner">
+    <div class="life-label animate-in">Life & Continuity</div>
+    <h2 class="life-title animate-in">When life<br><em>moves.</em></h2>
+    <div class="life-grid">
+      <div class="life-col">
+        <p class="animate-in">Some relocations are just logistics. A house, a city, a new routine. Others are entire lives reorganising themselves — professionally and personally, simultaneously. A business moving to a new country. Children changing schools. A family settling into a new context.</p>
+        <p class="animate-in">The professional and the personal are not separate when you are in the middle of a life relocation. They never are.</p>
+        <p class="animate-in">We hold both sides of the move at once. The operational and the personal. What is ending and what is beginning. Because you can't fully arrive at the new place if you are still carrying everything from the old one.</p>
+      </div>
+      <div class="life-col">
+        <p class="animate-in" style="font-style: italic; margin-bottom: 2rem; opacity: 0.5;">What we carry.</p>
+        <ul class="life-items animate-in">
+          <li>Setting up a home in a new context — with the care the family requires</li>
+          <li>Managing the operational side of the relocation so the personal can settle</li>
+          <li>Ongoing presence for the family — school, community, the things that make a place a home</li>
+          <li>Managing what is left behind — property, obligations, the threads that need holding</li>
+          <li>Professional settling — getting the work life functional in the new context</li>
+          <li>Transition support — for the weeks and months when the new place is still foreign</li>
+        </ul>
+      </div>
+    </div>
+    <p class="animate-in" style="margin-top: 3rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; opacity: 0.4; text-align: center;">Begin with a conversation. concierge@pinkcamel.club</p>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <p style="font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 2rem;" class="animate-in">Begin Here</p>
+    <h2 class="cta-title animate-in">A conversation<br>before <em>anything else.</em></h2>
+    <p class="cta-sub animate-in">A conversation first. Not a form, not a brochure. We need to understand what you are facing before we can say whether this is the right thing — and how to build it.</p>
+    <div class="cta-links animate-in">
+      <a href="mailto:concierge@pinkcamel.club" class="cta-btn">concierge@pinkcamel.club</a>
+      <a href="pinkcamelretreats.html" class="cta-btn secondary">View Retreats</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Pink Camel</a>
+  <p class="footer-copy">© 2026 Pink Camel · pinkcamel.club</p>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx - 4 + 'px'; cursor.style.top = my - 4 + 'px'; });
+  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx - 16 + 'px'; ring.style.top = ry - 16 + 'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; }); });
+  const obs = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80); }); }, { threshold: 0.12 });
+  document.querySelectorAll('.animate-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
