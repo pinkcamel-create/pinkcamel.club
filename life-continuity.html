@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life & Continuity — Pink Camel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --burgundy: #2C1008;
+    --burgundy-deep: #1a0905;
+    --cream: #F5F0E8;
+    --gold: #C9A96E;
+    --gold-dim: rgba(201,169,110,0.35);
+    --green: #0D3B2E;
+    --blush: #E8C4B0;
+    --blush-deep: #C4845A;
+    --blush-mid: #d4a88a;
+    --brown: #3D1A0A;
+    --black: #0d0d0b;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Didact Gothic', sans-serif; background: var(--blush); color: var(--burgundy); overflow-x: hidden; }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--blush-deep); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; mix-blend-mode: normal; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--blush-deep); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); opacity: 0.5; }
+
+  /* ── NAV ── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(232,196,176,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(44,16,8,0.06); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); text-decoration: none; opacity: 0.85; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); text-decoration: none; opacity: 0.45; transition: opacity 0.3s; }
+  .nav-links a:hover { opacity: 0.9; }
+  .nav-back { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush-deep); text-decoration: none; opacity: 0.6; transition: opacity 0.3s; }
+
+  /* ── HERO ── */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 3rem 7rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(196,132,90,0.08) 0%, transparent 60%); pointer-events: none; }
+  .hero-ornament { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.04; pointer-events: none; }
+  .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--blush-deep); margin-bottom: 2.5rem; opacity: 0.6; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 300; line-height: 1.04; margin-bottom: 2.5rem; color: var(--burgundy); position: relative; z-index: 2; }
+  .hero-title em { font-style: italic; color: var(--blush-deep); }
+  .hero-sub { font-size: 0.82rem; line-height: 2.3; color: var(--brown); opacity: 0.65; max-width: 500px; margin: 0 auto 3rem; position: relative; z-index: 2; }
+  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--blush-deep); opacity: 0.5; margin-bottom: 4rem; position: relative; z-index: 2; }
+  .hero-meta { display: flex; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+  .hero-meta p { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blush-deep); opacity: 0.4; }
+
+  /* ── DIVIDER ── */
+  .divider { width: 60px; height: 1px; background: var(--blush-deep); opacity: 0.2; margin: 0 auto; }
+
+  /* ── SECTION LABEL ── */
+  .label { font-size: 0.58rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--blush-deep); margin-bottom: 2rem; opacity: 0.6; }
+  .label-center { text-align: center; margin-bottom: 2rem; }
+
+  /* ── WHAT THIS IS ── */
+  .what-is { background: var(--blush); padding: 9rem 3rem; }
+  .what-is-inner { max-width: 900px; margin: 0 auto; }
+  .what-is h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--burgundy); margin-bottom: 3rem; }
+  .what-is h2 em { font-style: italic; color: var(--blush-deep); }
+  .what-is-body { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .what-is p { font-size: 0.85rem; line-height: 2.2; color: var(--brown); opacity: 0.7; margin-bottom: 1.2rem; }
+  .what-is p:last-child { margin-bottom: 0; }
+
+  /* ── WHAT WE CARRY ── */
+  .carry-section { background: rgba(44,16,8,0.03); padding: 9rem 3rem; }
+  .carry-inner { max-width: 900px; margin: 0 auto; }
+  .carry-inner > p.label { margin-bottom: 3rem; }
+  .carry-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+  .carry-item { padding: 2.5rem 2rem; background: var(--blush); border-top: 2px solid transparent; transition: border-color 0.3s; }
+  .carry-item:hover { border-top-color: var(--blush-deep); }
+  .carry-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--burgundy); margin-bottom: 0.8rem; }
+  .carry-item p { font-size: 0.78rem; line-height: 1.9; color: var(--brown); opacity: 0.6; }
+
+  /* ── WHO FOR ── */
+  .who-for { background: var(--blush); padding: 9rem 3rem; }
+  .who-for-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .who-for h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 300; color: var(--burgundy); margin-bottom: 2rem; line-height: 1.2; }
+  .who-for h2 em { font-style: italic; color: var(--blush-deep); }
+  .who-for p { font-size: 0.85rem; line-height: 2.2; color: var(--brown); opacity: 0.65; max-width: 55ch; margin: 0 auto 1.5rem; }
+  .who-for p:last-child { font-style: italic; opacity: 0.45; margin-top: 2rem; }
+
+  /* ── HOW IT WORKS ── */
+  .how-works { background: rgba(44,16,8,0.04); padding: 7rem 3rem; }
+  .how-works-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .how-works h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--burgundy); margin-bottom: 1rem; line-height: 1.2; }
+  .how-works h2 em { font-style: italic; color: var(--blush-deep); }
+  .how-works > .how-works-inner > p { font-size: 0.82rem; line-height: 2.2; color: var(--brown); opacity: 0.6; max-width: 55ch; margin: 0 auto; }
+
+  /* ── GEO STRIP ── */
+  .geo-strip { background: rgba(44,16,8,0.04); padding: 1.5rem 3rem; text-align: center; border-top: 1px solid rgba(44,16,8,0.04); }
+  .geo-strip p { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--blush-deep); opacity: 0.35; }
+  .geo-strip span { margin: 0 1.2rem; opacity: 0.3; }
+
+  /* ── CTA ── */
+  .cta-section { background: var(--blush); padding: 9rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(196,132,90,0.06) 0%, transparent 60%); pointer-events: none; }
+  .cta-inner { max-width: 580px; margin: 0 auto; position: relative; z-index: 2; }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 300; color: var(--burgundy); line-height: 1.1; margin-bottom: 2rem; }
+  .cta-title em { font-style: italic; color: var(--blush-deep); }
+  .cta-sub { font-size: 0.8rem; line-height: 2.1; color: var(--brown); opacity: 0.5; margin-bottom: 3.5rem; }
+  .cta-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .cta-btn { display: inline-block; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--blush-deep); border: 1px solid rgba(196,132,90,0.3); padding: 1rem 2.5rem; text-decoration: none; transition: all 0.4s ease; background: transparent; }
+  .cta-btn:hover { background: rgba(196,132,90,0.08); border-color: var(--blush-deep); }
+  .cta-btn.secondary { color: var(--brown); border-color: rgba(44,16,8,0.15); opacity: 0.6; }
+  .cta-btn.secondary:hover { opacity: 1; border-color: rgba(44,16,8,0.3); background: transparent; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--brown); padding: 2.5rem 3.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blush); opacity: 0.3; text-decoration: none; }
+  .footer-copy { font-size: 0.6rem; color: var(--cream); opacity: 0.15; letter-spacing: 0.1em; }
+
+  /* ── ANIMATIONS ── */
+  .animate-in { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--blush); }
+  ::-webkit-scrollbar-thumb { background: var(--blush-deep); opacity: 0.3; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+    .what-is-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .carry-list { grid-template-columns: 1fr; }
+    .hero { padding: 8rem 2rem 5rem; }
+    .what-is, .carry-section, .who-for, .how-works, .cta-section { padding: 6rem 2rem; }
+    footer { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Pink Camel</a>
+  <ul class="nav-links">
+    <li><a href="pinkcamelretreats.html">Retreats</a></li>
+    <li><a href="business-concierge.html">Concierge</a></li>
+    <li><a href="inner-circle.html">Inner Circle</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Home</a>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <svg class="hero-ornament" viewBox="0 0 500 500" fill="none">
+    <circle cx="250" cy="250" r="200" stroke="rgba(196,132,90,0.4)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="140" stroke="rgba(196,132,90,0.25)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="80" stroke="rgba(196,132,90,0.15)" stroke-width="0.5"/>
+    <line x1="50" y1="250" x2="450" y2="250" stroke="rgba(196,132,90,0.08)" stroke-width="0.5"/>
+    <line x1="250" y1="50" x2="250" y2="450" stroke="rgba(196,132,90,0.08)" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="4" fill="rgba(196,132,90,0.3)"/>
+  </svg>
+  <div style="position: relative; z-index: 2;">
+    <p class="hero-eyebrow animate-in">Life & Continuity · Pink Camel</p>
+    <h1 class="hero-title animate-in">When life<br><em>moves.</em></h1>
+    <p class="hero-sub animate-in">For leaders and founders relocating a business, a family, or a life — to a new city, a new country, a new chapter. When the professional and the personal are the same complexity, held together.</p>
+    <p class="hero-tagline animate-in">"We carry lives too full to be managed, too intentional to be compromised."</p>
+    <div class="hero-meta animate-in">
+      <p>Europe · Africa · Middle East · Lisbon · Sofia · Marrakech · Dubai</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider animate-in"></div>
+
+<!-- ══════════════════ WHAT THIS IS ══════════════════ -->
+<section class="what-is">
+  <div class="what-is-inner">
+    <h2 class="animate-in">Continuity across<br><em>the relocation.</em></h2>
+    <div class="what-is-body">
+      <div>
+        <p class="animate-in">Some relocations are just logistics. A house, a city, a new routine. Others are entire lives reorganising themselves — professionally and personally, simultaneously. A business moving to a new country. Children changing schools. A family settling into a new context.</p>
+        <p class="animate-in">The professional and the personal are not separate when you are in the middle of a life relocation. They never are. The business relocation IS a life relocation. And we hold both sides at once.</p>
+      </div>
+      <div>
+        <p class="animate-in">Life & Continuity is not a moving service. It is not a relocation consultant. It is the ongoing presence of someone who understands what you are moving from, what you are moving to, and how to hold the transition so that both arrive intact.</p>
+        <p class="animate-in" style="font-style: italic; opacity: 0.5; margin-top: 1rem;">What we carry is not a checklist. It is defined by what the move requires.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHAT WE CARRY ══════════════════ -->
+<section class="carry-section">
+  <div class="carry-inner">
+    <p class="label animate-in">What we carry</p>
+    <div class="carry-list">
+      <div class="carry-item animate-in">
+        <h3>Setting up home</h3>
+        <p>With the care the family requires — not just logistics, but the things that make a new place feel like it could be home.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Managing the move</h3>
+        <p>The operational side of the relocation handled so the personal can actually settle — without both happening at once.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Ongoing presence for the family</h3>
+        <p>School, community, the things that make a place a home — the threads that need holding while the rest reorganises.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>What is left behind</h3>
+        <p>Property, obligations, the threads that need holding from a distance — while you are somewhere else.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Professional settling</h3>
+        <p>Getting the work life functional in the new context — not just moved, but actually working.</p>
+      </div>
+      <div class="carry-item animate-in">
+        <h3>Transition support</h3>
+        <p>For the weeks and months when the new place is still foreign — when the novelty has worn off and the real integration begins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHO THIS IS FOR ══════════════════ -->
+<section class="who-for">
+  <div class="who-for-inner">
+    <p class="label-center animate-in">Who this is for</p>
+    <h2 class="animate-in">For people moving a life —<br><em>not just a household.</em></h2>
+    <p class="animate-in">Leaders who are moving a life. Not just relocating a residence — reorganising something more significant. The professional complexity and the personal complexity are the same complexity, and they need to be held together.</p>
+    <p class="animate-in">If you are relocating a business to a new country. If you are moving a family across borders. If the transition is also a restructuring — of how you work, where your children grow, what your days contain.</p>
+    <p class="animate-in">Begin with a conversation. We'll tell you honestly whether this is the right fit.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ HOW IT WORKS ══════════════════ -->
+<section class="how-works">
+  <div class="how-works-inner">
+    <h2 class="animate-in">Ongoing or discrete.<br><em>Depending on what the move requires.</em></h2>
+    <p class="animate-in">Life & Continuity is available as an ongoing retainer — for leaders who need someone present across the full arc of a complex relocation. It is also available as a discrete project — for moves that are more contained but still require the right kind of handling.</p>
+    <p class="animate-in" style="margin-top: 1rem;">The format follows the need. Both begin with a conversation.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ GEO STRIP ══════════════════ -->
+<div class="geo-strip">
+  <p class="animate-in">Lisbon <span>·</span> Sofia <span>·</span> Marrakech <span>·</span> Dubai <span>—</span> Europe <span>·</span> Africa <span>·</span> Middle East</p>
+</div>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <p class="label-center animate-in" style="margin-bottom: 2rem;">Begin Here</p>
+    <h2 class="cta-title animate-in">A conversation<br>before <em>anything else.</em></h2>
+    <p class="cta-sub animate-in">Tell us what you are moving, where you are moving it, and what you're carrying. We'll come back with an honest assessment of whether Life & Continuity is the right thing — and what it would look like.</p>
+    <div class="cta-links animate-in">
+      <a href="mailto:concierge@pinkcamel.club" class="cta-btn">concierge@pinkcamel.club</a>
+      <a href="business-concierge.html" class="cta-btn secondary">Business Concierge</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Pink Camel</a>
+  <p class="footer-copy">© 2026 Pink Camel · pinkcamel.club</p>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx - 4 + 'px'; cursor.style.top = my - 4 + 'px'; });
+  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx - 16 + 'px'; ring.style.top = ry - 16 + 'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.5)'; }); el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; }); });
+  const obs = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80); }); }, { threshold: 0.1 });
+  document.querySelectorAll('.animate-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
