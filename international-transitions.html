@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Concierge — Pink Camel</title>
+<title>International Transitions — Pink Camel</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Didact+Gothic&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --burgundy: #311509;
-    --burgundy-light: #3d1b0c;
+    --green: #062C21;
+    --green-light: #0a3d2e;
     --cream: #F5F0EB;
     --blush: #E8B9A5;
     --blush-deep: #d4a08a;
@@ -17,19 +17,19 @@
     --black: #0A0A0A;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Didact Gothic', sans-serif; background: var(--burgundy); color: var(--cream); overflow-x: hidden; }
+  body { font-family: 'Didact Gothic', sans-serif; background: var(--green); color: var(--cream); overflow-x: hidden; }
 
   .cursor { position: fixed; width: 8px; height: 8px; background: var(--blush); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.15s ease; mix-blend-mode: difference; }
   .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--blush); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); opacity: 0.5; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(49,21,9,0.92); backdrop-filter: blur(14px); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 2rem 3.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(6,44,33,0.92); backdrop-filter: blur(14px); }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blush); text-decoration: none; opacity: 0.85; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); text-decoration: none; opacity: 0.45; transition: opacity 0.3s; }
   .nav-links a:hover { opacity: 1; }
 
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 3rem 7rem; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(232,185,165,0.06) 0%, transparent 60%); pointer-events: none; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(232,185,165,0.05) 0%, transparent 60%); pointer-events: none; }
   .hero-ornament { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; opacity: 0.035; pointer-events: none; }
   .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--blush); margin-bottom: 2.5rem; opacity: 0.5; }
   .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 300; line-height: 1.04; margin-bottom: 2.5rem; color: var(--cream); position: relative; z-index: 2; }
@@ -39,25 +39,26 @@
   .divider { width: 60px; height: 1px; background: var(--blush); opacity: 0.15; margin: 0 auto; }
 
   .label { font-size: 0.58rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--blush); margin-bottom: 2rem; opacity: 0.5; }
+  .label-center { text-align: center; margin-bottom: 2rem; }
 
-  .define-section { background: var(--burgundy-light); padding: 9rem 3rem; }
+  .define-section { background: var(--green-light); padding: 9rem 3rem; }
   .define-inner { max-width: 900px; margin: 0 auto; }
   .define-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 3rem; }
   .define-inner h2 em { font-style: italic; color: var(--blush); }
   .define-body { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
-  .define-body p { font-size: 0.85rem; line-height: 2.2; color: var(--cream); opacity: 0.55; margin-bottom: 1.2rem; }
+  .define-body p { font-size: 0.85rem; line-height: 2.2; color: var(--cream); opacity: 0.6; margin-bottom: 1.2rem; }
 
-  .usecases-section { background: rgba(255,255,255,0.02); padding: 9rem 3rem; }
-  .usecases-inner { max-width: 900px; margin: 0 auto; }
-  .usecases-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
-  .usecase-item { padding: 2.5rem 2rem; background: rgba(255,255,255,0.03); border-top: 2px solid transparent; transition: border-color 0.3s; }
-  .usecase-item:hover { border-top-color: var(--blush); }
-  .usecase-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--cream); margin-bottom: 0.8rem; }
-  .usecase-item p { font-size: 0.78rem; line-height: 1.9; color: var(--cream); opacity: 0.45; }
+  .situations-section { background: rgba(255,255,255,0.02); padding: 9rem 3rem; }
+  .situations-inner { max-width: 900px; margin: 0 auto; }
+  .situations-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+  .situation-item { padding: 2.5rem 2rem; background: rgba(255,255,255,0.03); border-top: 2px solid transparent; transition: border-color 0.3s; }
+  .situation-item:hover { border-top-color: var(--blush); }
+  .situation-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--cream); margin-bottom: 0.8rem; }
+  .situation-item p { font-size: 0.78rem; line-height: 1.9; color: var(--cream); opacity: 0.5; }
 
   .how-section { background: rgba(255,255,255,0.02); padding: 7rem 3rem; }
   .how-inner { max-width: 750px; margin: 0 auto; }
-  .how-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--cream); margin-bottom: 1.5rem; line-height: 1.2; }
+  .how-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--cream); margin-bottom: 2rem; line-height: 1.2; }
   .how-inner h2 em { font-style: italic; color: var(--blush); }
   .how-intro { font-size: 0.85rem; line-height: 2.2; color: var(--cream); opacity: 0.5; margin-bottom: 2rem; max-width: 55ch; }
   .how-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -65,13 +66,15 @@
   .how-step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; }
   .how-step p { font-size: 0.72rem; line-height: 1.8; color: var(--cream); opacity: 0.4; }
 
-  .scenarios-section { background: var(--burgundy-light); padding: 9rem 3rem; }
+  .scenarios-section { background: var(--green-light); padding: 9rem 3rem; }
   .scenarios-inner { max-width: 800px; margin: 0 auto; }
+  .scenarios-intro { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: var(--blush); opacity: 0.5; margin-bottom: 3rem; text-align: center; }
   .scenario { margin-bottom: 3rem; border-left: 1px solid rgba(232,185,165,0.15); padding-left: 2rem; }
   .scenario:last-child { margin-bottom: 0; }
+  .scenario-head { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.5rem; }
   .scenario-body { font-size: 0.82rem; line-height: 2; color: var(--cream); opacity: 0.5; }
 
-  .cta-section { background: var(--burgundy); padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-section { background: var(--green); padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden; }
   .cta-inner { max-width: 580px; margin: 0 auto; position: relative; z-index: 2; }
   .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 1.5rem; }
   .cta-sub { font-size: 0.8rem; line-height: 2; color: var(--cream); opacity: 0.5; margin-bottom: 2rem; }
@@ -88,17 +91,17 @@
   .animate-in.visible { opacity: 1; transform: translateY(0); }
 
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--burgundy); }
+  ::-webkit-scrollbar-track { background: var(--green); }
   ::-webkit-scrollbar-thumb { background: var(--blush); opacity: 0.3; }
 
   @media (max-width: 768px) {
     nav { padding: 1.5rem 2rem; }
     .nav-links { display: none; }
     .define-body { grid-template-columns: 1fr; gap: 2.5rem; }
-    .usecases-list { grid-template-columns: 1fr; }
+    .situations-list { grid-template-columns: 1fr; }
     .how-steps { grid-template-columns: 1fr; }
     .hero { padding: 8rem 2rem 5rem; }
-    .define-section, .usecases-section, .how-section, .scenarios-section, .cta-section { padding: 6rem 2rem; }
+    .define-section, .situations-section, .how-section, .scenarios-section, .cta-section { padding: 6rem 2rem; }
     footer { padding: 2rem; flex-direction: column; text-align: center; }
   }
 </style>
@@ -129,9 +132,9 @@
     <circle cx="250" cy="250" r="4" fill="rgba(232,185,165,0.25)"/>
   </svg>
   <div style="position: relative; z-index: 2;">
-    <p class="hero-eyebrow animate-in">Business Concierge · Pink Camel</p>
-    <h1 class="hero-title animate-in">Business that moves<br><em>across borders with you.</em></h1>
-    <p class="hero-sub animate-in">Your business doesn't stay behind when you cross a border. We make sure it doesn't have to.</p>
+    <p class="hero-eyebrow animate-in">International Transitions · Pink Camel</p>
+    <h1 class="hero-title animate-in">Moving between places,<br><em>without losing continuity.</em></h1>
+    <p class="hero-sub animate-in">Relocation is a process. Transition is a craft. We handle the first so you can live the second.</p>
   </div>
 </section>
 
@@ -140,38 +143,42 @@
 <!-- ════════════════ DEFINITION ════════════════ -->
 <section class="define-section">
   <div class="define-inner">
-    <h2 class="animate-in">A presence in more<br>than one <em>place.</em></h2>
+    <h2 class="animate-in">What a transition<br><em>requires.</em></h2>
     <div class="define-body">
       <div>
-        <p class="animate-in">Expanding into a new market isn't a decision you delegate to a consultant you meet once. It takes ground reality — relationships, context, timing, trust.</p>
+        <p class="animate-in">A move between countries isn't a logistical event — it's a passage through complexity. Residency, schooling, banking, property, healthcare, legal status. Each one its own system, with its own rules and its own pace.</p>
       </div>
       <div>
-        <p class="animate-in">We provide strategic, on-the-ground presence across borders. Not as a vendor — as a continuity partner who understands your business, your reputation, and the difference between moving fast and moving well.</p>
+        <p class="animate-in">We coordinate them all. One protocol. One point of contact. End to end.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════ USE CASES ════════════════ -->
-<section class="usecases-section">
-  <div class="usecases-inner">
-    <p class="label animate-in">Use Cases</p>
-    <div class="usecases-list">
-      <div class="usecase-item animate-in">
-        <h3>Market Entry</h3>
-        <p>You've identified an opportunity in a new geography. We map the landscape — regulatory, commercial, cultural — and connect you to the partners and institutions that matter.</p>
+<!-- ════════════════ SITUATIONS WE COVER ════════════════ -->
+<section class="situations-section">
+  <div class="situations-inner">
+    <p class="label animate-in">Situations We Cover</p>
+    <div class="situations-list">
+      <div class="situation-item animate-in">
+        <h3>Relocation</h3>
+        <p>Full-spectrum international moves, from initial scouting through to settled life. Your family arrives to a home that already works.</p>
       </div>
-      <div class="usecase-item animate-in">
-        <h3>Strategic Introductions</h3>
-        <p>The right door opens faster with the right introduction. Across Europe and MENA, we open doors that need a trusted hand.</p>
+      <div class="situation-item animate-in">
+        <h3>Schooling & Education</h3>
+        <p>School selection, applications, wait-list navigation, and integration across international systems, from early years through university.</p>
       </div>
-      <div class="usecase-item animate-in">
-        <h3>Executive Representation</h3>
-        <p>When you can't be in two places at once, we can. On-the-ground coordination, meeting preparation, stakeholder management, run in your voice and to your standards.</p>
+      <div class="situation-item animate-in">
+        <h3>Banking & Finance</h3>
+        <p>Account opening, cross-border transfers, credit establishment, and introductions to private banking relationships that understand internationally mobile clients.</p>
       </div>
-      <div class="usecase-item animate-in">
-        <h3>Special Projects</h3>
-        <p>Acquisition scouting, partnership evaluation, vendor due diligence, cross-border logistics. Work that sits outside your core team's bandwidth but needs someone who holds the full picture.</p>
+      <div class="situation-item animate-in">
+        <h3>Residency & Legal</h3>
+        <p>Residency pathways, visa strategy, tax orientation, and coordination with immigration counsel who handle complex profiles.</p>
+      </div>
+      <div class="situation-item animate-in">
+        <h3>Housing & Property</h3>
+        <p>Short and long-term accommodation, acquisition support, lease negotiation, and local services, all arranged in advance.</p>
       </div>
     </div>
   </div>
@@ -181,24 +188,24 @@
 <section class="how-section">
   <div class="how-inner">
     <p class="label animate-in">How It Works</p>
-    <h2 class="animate-in">Structured around<br><em>your agenda.</em></h2>
-    <p class="how-intro animate-in">We don't sell retainers before we understand what you need. The relationship starts with a conversation about your current priorities — then we build a structure that fits.</p>
+    <h2 class="animate-in">The shape of a<br><em>transition.</em></h2>
+    <p class="how-intro animate-in">We begin before you arrive.</p>
     <div class="how-steps">
       <div class="how-step animate-in">
-        <h4>Discovery</h4>
-        <p>What are you building? Where are the gaps? What needs to move?</p>
+        <h4>Assessment</h4>
+        <p>Where are you coming from? What needs to move, suspend, close, or open?</p>
       </div>
       <div class="how-step animate-in">
-        <h4>Design</h4>
-        <p>A tailored engagement: project, retainer, or strategic advisory.</p>
+        <h4>Mapping</h4>
+        <p>Every dependency: legal, financial, educational, domestic, professional.</p>
+      </div>
+      <div class="how-step animate-in">
+        <h4>Phasing</h4>
+        <p>Not everything happens at once. We sequence it so nothing falls through.</p>
       </div>
       <div class="how-step animate-in">
         <h4>Execution</h4>
-        <p>Coordination, introduction, representation, follow-through.</p>
-      </div>
-      <div class="how-step animate-in">
-        <h4>Continuity</h4>
-        <p>You don't restart the relationship for each new initiative. It continues.</p>
+        <p>On-the-ground coordination across vendors, jurisdictions, timelines.</p>
       </div>
     </div>
   </div>
@@ -208,14 +215,18 @@
 <section class="scenarios-section">
   <div class="scenarios-inner">
     <p class="label animate-in">Example Scenarios</p>
+    <p class="scenarios-intro animate-in">Quiet illustrations of how we work — not case studies.</p>
     <div class="scenario animate-in">
-      <p class="scenario-body">A fintech founder expanding across the GCC: Regulatory landscape analysis, introductions to key banking partners, coordination with local counsel on licensing. An office found, staffed, and operational within eight weeks of the first conversation.</p>
+      <p class="scenario-head">The family moving from Dubai to Geneva</p>
+      <p class="scenario-body">School placement for three children across different curricula. Lease negotiation on a family home. Residency permits for a non-working spouse. Banking relationships transferred. Coordinated from a single brief, finished before the family touched down.</p>
     </div>
     <div class="scenario animate-in">
-      <p class="scenario-body">A family office exploring real estate in Southern Europe: Market mapping across three countries, property scouting and due diligence, introductions to local legal and tax advisors. A shortlist presented, and negotiated, without the buyer's identity surfacing until they were ready.</p>
+      <p class="scenario-head">The founder expanding operations to Riyadh</p>
+      <p class="scenario-body">Short-term accommodation, business visa facilitation, introductions to local corporate banking, coordination with legal counsel on commercial registration. A presence in place before the first board meeting.</p>
     </div>
     <div class="scenario animate-in">
-      <p class="scenario-body">A CEO establishing a European headquarters from a Middle East base: Timeline mapping, recruitment coordination with executive search partners, office scouting, residency and tax structuring, banking relationships transferred. By the first board meeting, everything was already in place.</p>
+      <p class="scenario-head">The executive relocating from London to Luxembourg</p>
+      <p class="scenario-body">Property search, school registration for two children, tax orientation, utilities, healthcare registration, vehicle import. The executive walked in on day one to a life that already worked.</p>
     </div>
   </div>
 </section>
@@ -223,8 +234,8 @@
 <!-- ════════════════ CTA ════════════════ -->
 <section class="cta-section">
   <div class="cta-inner">
-    <p class="label animate-in">Start a Conversation</p>
-    <p class="cta-sub animate-in">You'll know within one conversation whether this is the right fit.</p>
+    <p class="label animate-in">Begin a Transition</p>
+    <p class="cta-sub animate-in">A conversation costs nothing. The wrong move costs everything.</p>
     <div class="cta-contact animate-in">
       <a href="mailto:concierge@pinkcamel.club">concierge@pinkcamel.club</a>
       <a href="https://wa.me/359895960806" target="_blank">+359 89 596 0806</a>
