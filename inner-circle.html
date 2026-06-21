@@ -87,11 +87,32 @@
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: var(--blush); opacity: 0.2; }
 
+  /* ── MOBILE NAV ── */
+  .nav-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 200; }
+  .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--blush); border-radius: 1px; transition: all 0.3s; }
+  .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+  /* ── CONTACT BUTTONS ── */
+  .contact-btn { display: inline-block; padding: 0.7rem 2rem; border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .contact-btn-email { color: var(--blush); opacity: 0.6; background: transparent; border: 1px solid rgba(232,185,165,0.15); }
+  .contact-btn-email:hover { opacity: 1; border-color: var(--blush); }
+  .contact-btn-wa { color: var(--cream); background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.2); }
+  .contact-btn-wa:hover { background: rgba(37,211,102,0.22); }
+  .contact-btn-li { color: var(--cream); background: rgba(10,102,194,0.12); border: 1px solid rgba(10,102,194,0.2); }
+  .contact-btn-li:hover { background: rgba(10,102,194,0.22); }
+  .begin-personal { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+  .personal-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blush); opacity: 0.25; }
+  .contact-btn-li-sm { display: inline-block; padding: 0.4rem 1.2rem; border-radius: 2px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--cream); background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.15); text-decoration: none; transition: all 0.3s; }
+  .contact-btn-li-sm:hover { background: rgba(10,102,194,0.18); }
   @media (max-width: 768px) {
-    nav { padding: 1.5rem 2rem; }
-    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 150; }
+    .nav-links.active { display: flex; }
+    .nav-links a { font-size: 0.9rem; opacity: 0.6; color: var(--cream); }
+    .nav-links a:hover { opacity: 1; }
     .hero { padding: 8rem 2rem 5rem; }
-    .define-section, .includes-section, .not-section, .access-section, .philosophy-section, .cta-section { padding: 6rem 2rem; }
+    .define-section, .includes-section, .access-section, .philosophy-section, .cta-section { padding: 6rem 2rem; }
     footer { padding: 2rem; flex-direction: column; text-align: center; }
   }
 </style>
@@ -103,7 +124,10 @@
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/logo-pink.png" alt="Pink Camel" style="height: 40px; width: auto; display: block;"></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="international-transitions.html">Transitions</a></li>
     <li><a href="business-concierge.html">Concierge</a></li>
     <li><a href="private-experiences.html">Experiences</a></li>
@@ -182,9 +206,14 @@
     <p class="label animate-in">Request Access</p>
     <p class="cta-sub animate-in">If this resonates, reach out. We'll arrange a conversation — no commitment, no pitch.</p>
     <div class="cta-contact animate-in">
-      <a href="mailto:concierge@pinkcamel.club">concierge@pinkcamel.club</a>
-      <a href="https://wa.me/359895960806" target="_blank">+359 89 596 0806</a>
-      <a href="https://linkedin.com/company/pinkcamelclub" target="_blank">linkedin.com/company/pinkcamelclub</a>
+      <a href="mailto:concierge@pinkcamel.club" class="contact-btn contact-btn-email">concierge@pinkcamel.club</a>
+      <a href="https://wa.me/359895960806" target="_blank" class="contact-btn contact-btn-wa">WhatsApp</a>
+      <a href="https://linkedin.com/company/pinkcamelclub" target="_blank" class="contact-btn contact-btn-li">LinkedIn</a>
+    </div>
+    <div class="begin-personal animate-in">
+      <span class="personal-label">Founders</span>
+      <a href="https://www.linkedin.com/in/mona-aleksiev/" target="_blank" class="contact-btn-li-sm">Mona Aleksiev</a>
+      <a href="https://www.linkedin.com/in/pavel-aleksiev/" target="_blank" class="contact-btn-li-sm">Pavel Aleksiev</a>
     </div>
     <p class="cta-final animate-in">Your Camel awaits.</p>
   </div>
@@ -196,6 +225,20 @@
 </footer>
 
 <script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
