@@ -98,17 +98,15 @@
   .nav-toggle.active span:nth-child(2) { opacity: 0; }
   .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
   /* ── CONTACT BUTTONS ── */
-  .contact-btn { display: inline-block; padding: 0.7rem 2rem; border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .contact-btn { display: inline-block; padding: 0.6rem 1.8rem; border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
   .contact-btn-email { color: var(--blush-deep); opacity: 0.7; background: transparent; border: 1px solid rgba(196,132,90,0.2); }
   .contact-btn-email:hover { opacity: 1; border-color: var(--blush-deep); }
-  .contact-btn-wa { color: var(--burgundy); background: rgba(37,211,102,0.08); border: 1px solid rgba(37,211,102,0.15); }
-  .contact-btn-wa:hover { background: rgba(37,211,102,0.15); }
-  .contact-btn-li { color: var(--burgundy); background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.15); }
-  .contact-btn-li:hover { background: rgba(10,102,194,0.15); }
-  .begin-personal { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-  .personal-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--burgundy); opacity: 0.25; }
-  .contact-btn-li-sm { display: inline-block; padding: 0.4rem 1.2rem; border-radius: 2px; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--burgundy); background: rgba(10,102,194,0.06); border: 1px solid rgba(10,102,194,0.12); text-decoration: none; transition: all 0.3s; }
-  .contact-btn-li-sm:hover { background: rgba(10,102,194,0.12); }
+  .contact-btn-wa, .contact-btn-li { color: var(--burgundy); opacity: 0.45; background: transparent; border: 1px solid rgba(49,21,9,0.15); }
+  .contact-btn-wa:hover, .contact-btn-li:hover { opacity: 0.8; border-color: rgba(49,21,9,0.3); }
+  .begin-personal { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; margin-top: 0.5rem; }
+  .personal-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); opacity: 0.2; }
+  .contact-btn-li-sm { display: inline-block; padding: 0.35rem 1rem; border-radius: 2px; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--burgundy); opacity: 0.35; border: 1px solid rgba(49,21,9,0.1); text-decoration: none; transition: all 0.3s; }
+  .contact-btn-li-sm:hover { opacity: 0.65; border-color: rgba(49,21,9,0.25); }
   @media (max-width: 768px) {
     .nav-toggle { display: flex; }
     .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(49,21,9,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 150; }
